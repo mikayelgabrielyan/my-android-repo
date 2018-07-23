@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private Button openEditText;
     public static EditText editText;
-    private String myRequestCode = "requestCode";
+    public static final String MY_KEY = "myKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +24,19 @@ public class MainActivity extends AppCompatActivity {
         openEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, SecondActivity.class);
-                startActivityForResult(i, 1);
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra(MY_KEY, editText.getText().toString());
+                startActivityForResult(intent, 1);
             }
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if(resultCode == RESULT_OK) {
-                editText.setText(data.getStringExtra("editTextValue"));
-            }
+        if (data == null) {
+            return;
         }
+        editText.setText(data.getStringExtra(MY_KEY));
+
     }
 }
