@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PassBackChangedValue</string>
+    <string name="edit_text">editText</string>
+</resources>
