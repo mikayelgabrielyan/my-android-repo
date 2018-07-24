@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:onClick="btnClick"
         android:layout_gravity="center"
-        android:id="@+id/button1" />
+        android:id="@+id/button1"
+        android:background="@color/colorPrimaryDark"/>
 
     <LinearLayout
         android:layout_weight="1"
