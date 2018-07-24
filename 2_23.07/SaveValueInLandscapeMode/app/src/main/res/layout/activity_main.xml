@@ -9,7 +9,7 @@
 
     <TextView
         android:layout_weight="1"
-        android:text="Normal Mode"
+        android:text="@string/norm_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -27,11 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:id="@+id/editText"
-        android:hint="Enter your text" />
+        android:hint="@string/et_placeholder" />
     </LinearLayout>
 
     <Button
-        android:text="MINIMIZE"
+        android:text="@string/min_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnClick"
@@ -51,7 +51,7 @@
     </LinearLayout>
 
     <Button
-        android:text="MAXIMIZE"
+        android:text="@string/max_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnClick"

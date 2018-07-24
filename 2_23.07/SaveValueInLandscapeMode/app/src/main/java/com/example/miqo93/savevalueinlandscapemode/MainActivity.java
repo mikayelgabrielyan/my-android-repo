@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
         mEditText = findViewById(R.id.editText);
         mTextView = findViewById(R.id.textView);
     }
-
-    public void btnClick(View view) {
+    public void onClick(View view) {
         mTextView.setText(mEditText.getText().toString());
         float size = mTextView.getTextSize();
         switch (view.getId()) {
