@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SaveValueInLandscapeMode</string>
+    <string name="landscape_mode">Landscape Mode</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="normal_mode">Normal Mode</string>
+</resources>

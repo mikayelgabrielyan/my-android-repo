@@ -1,7 +1,5 @@
 package com.example.miqo93.filmlist;
 
-import android.graphics.drawable.Drawable;
-
 public class Film {
     private String mTitle, mDescription, mUrl;
     private int mImage;
