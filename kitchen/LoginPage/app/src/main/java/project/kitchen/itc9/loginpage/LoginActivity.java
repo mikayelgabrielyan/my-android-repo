@@ -3,6 +3,7 @@ package project.kitchen.itc9.loginpage;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +12,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class LoginActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "LoginActivity";
 
     EditText mEmailText;
@@ -23,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mAuth = FirebaseAuth.getInstance();
 
         mEmailText = findViewById(R.id.input_email);
         mPasswordText = findViewById(R.id.input_password);
@@ -32,20 +42,32 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                login(mEmailText.getText().toString(),mPasswordText.getText().toString());
             }
         });
 
         mForgotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-                startActivity(intent);
+                registration(mEmailText.getText().toString(),mPasswordText.getText().toString());
             }
         });
     }
 
-    public void login() {
+    public void registration(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Registration is sucssesed", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "You are already registered", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void login(String email, String password) {
         Log.d(TAG, "Login");
 
         if (!validate()) {
@@ -69,8 +91,18 @@ public class LoginActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
             }, 5000);
-        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-        startActivity(intent);
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    startActivity(intent);
+                } else {
+                    onBackPressed();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -80,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         mLoginButton.setEnabled(true);
-        finish();
     }
 
     public void onLoginFailed() {
@@ -96,9 +127,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             mEmailText.setError("enter a valid email address");
-            valid = false;
-        } else if(!email.equals("user@gmail.com") && !password.equals("useruser")) {
-            mEmailText.setError("wrong user log");
             valid = false;
         } else {
             mEmailText.setError(null);

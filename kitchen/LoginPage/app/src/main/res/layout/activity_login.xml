@@ -51,11 +51,11 @@
             android:text="@string/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/pass_margin_bottom"
-            app:passwordToggleContentDescription="aaaaaa"
             app:passwordToggleDrawable="@drawable/another_toggle_drawable"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorAccent">
