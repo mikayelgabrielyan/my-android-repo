@@ -1,4 +1,4 @@
-package com.example.vahan.slider;
+package project.cookmaster.itc9.cookmaster;
 
 import android.content.Context;
 import android.content.SharedPreferences;

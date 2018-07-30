@@ -1,4 +1,4 @@
-package com.example.vahan.slider;
+package project.cookmaster.itc9.cookmaster;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -109,6 +109,8 @@ public class LoginFragment extends Fragment  implements  View.OnClickListener {
                 if(task.isSuccessful()) {
                     Intent intent = new Intent(getActivity(), HomePageActivity.class);
                     startActivity(intent);
+                } else {
+                    onLoginFailed();
                 }
             }
         });

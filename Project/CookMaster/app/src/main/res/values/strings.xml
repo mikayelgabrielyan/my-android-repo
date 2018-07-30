@@ -12,8 +12,8 @@
     <string name="welcome">Welcome!</string>
     <string name="skip">skip</string>
 
-    <string name="my_preference">com.example.com.MyPref</string>
-    <string name="my_preference_key">com.example.com.MyPrefKey</string>
+    <string name="my_preference">project.cookmaster.project.MyPref</string>
+    <string name="my_preference_key">project.cookmaster.project.MyPrefKey</string>
     <string name="start">Start</string>
     <string name="welcome_to_home_page">Welcome to Home Page!</string>
 

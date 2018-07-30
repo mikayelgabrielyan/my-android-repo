@@ -1,4 +1,4 @@
-package com.example.vahan.slider;
+package project.cookmaster.itc9.cookmaster;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -18,7 +18,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (new PreferenceManager(this).checkPreference()) {
             loadHome();
         }
@@ -63,6 +62,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
     private void loadHome() {
         startActivity(new Intent(this, LoginForgotPasswordActivity.class));
-        finish();
     }
 }
+
