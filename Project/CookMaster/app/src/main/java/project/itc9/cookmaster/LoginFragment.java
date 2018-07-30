@@ -1,4 +1,4 @@
-package project.cookmaster.itc9.cookmaster;
+package project.itc9.cookmaster;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

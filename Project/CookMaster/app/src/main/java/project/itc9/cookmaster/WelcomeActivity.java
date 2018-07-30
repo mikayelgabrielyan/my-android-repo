@@ -1,4 +1,4 @@
-package project.cookmaster.itc9.cookmaster;
+package project.itc9.cookmaster;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -64,4 +64,3 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         startActivity(new Intent(this, LoginForgotPasswordActivity.class));
     }
 }
-

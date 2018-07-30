@@ -1,4 +1,4 @@
-package project.cookmaster.itc9.cookmaster;
+package project.itc9.cookmaster;
 
 import org.junit.Test;
 

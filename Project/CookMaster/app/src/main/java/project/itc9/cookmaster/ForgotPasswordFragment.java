@@ -1,4 +1,4 @@
-package project.cookmaster.itc9.cookmaster;
+package project.itc9.cookmaster;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

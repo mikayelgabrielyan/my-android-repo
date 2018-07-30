@@ -1,4 +1,4 @@
-package project.cookmaster.itc9.cookmaster;
+package project.itc9.cookmaster;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
