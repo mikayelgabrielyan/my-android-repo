@@ -1,7 +1,6 @@
 package project.itc9.cookmaster;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,20 +29,19 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginFragment extends Fragment  implements  View.OnClickListener {
     private FirebaseAuth mAuth;
     private static final String TAG = "LoginFragment";
-    private static final String PREFS_NAME = "preferences";
     private static final String PREF_UNAME = "Username";
     private static final String PREF_PASSWORD = "Password";
 
-    private final String DefaultUnameValue = "";
+    private final String defaultUnameValue = "";
     private String UnameValue;
 
-    private final String DefaultPasswordValue = "";
+    private final String defaultPasswordValue = "";
     private String PasswordValue;
 
-    EditText mEmailText;
-    EditText mPasswordText;
-    Button mSigninButton;
-    Button mForgotButton;
+    private EditText mEmailText;
+    private EditText mPasswordText;
+    private Button mSigninButton;
+    private Button mForgotButton;
 
     public LoginFragment() {
     }
@@ -82,8 +80,8 @@ public class LoginFragment extends Fragment  implements  View.OnClickListener {
 
     private void loadPreferences() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        UnameValue = settings.getString(PREF_UNAME, DefaultUnameValue);
-        PasswordValue = settings.getString(PREF_PASSWORD, DefaultPasswordValue);
+        UnameValue = settings.getString(PREF_UNAME, defaultUnameValue);
+        PasswordValue = settings.getString(PREF_PASSWORD, defaultPasswordValue);
         mEmailText.setText(UnameValue);
         mPasswordText.setText(PasswordValue);
     }

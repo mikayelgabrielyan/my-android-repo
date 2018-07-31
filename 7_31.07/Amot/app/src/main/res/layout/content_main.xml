@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <!--<Button-->
+        <!--android:id="@+id/buttonPhone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Open phone"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/buttonMail"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Open email"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/buttonActivity"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Open activity"/>-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:scaleType="center"/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
