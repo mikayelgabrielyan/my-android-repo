@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SearchView;
 
 import com.squareup.picasso.Picasso;
 
@@ -32,30 +33,49 @@ public class MainActivity extends AppCompatActivity {
                     "Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg";
     public static final String KEY = "KEY";
 
-    private RecyclerView recyclerView;
-    private List<User> users;
     private MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView = findViewById(R.id.RView);
+        RecyclerView recyclerView = findViewById(R.id.RView);
         recyclerView.setLayoutManager(layoutManager);
         DataProvider.fillInitialData();
-        users = DataProvider.users;
+        List<User> users = DataProvider.users;
         adapter = new MyAdapter(users, this);
         recyclerView.setAdapter(adapter);
-
-//        openActivity();
-//        openMail();
-//        openPhone();
-//        openImage();
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        SearchView search = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        return super.onOptionsItemSelected(item);
+    }
+}
 
 //    private void openImage() {
 //        imageView = findViewById(R.id.userImage);
@@ -102,25 +122,4 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-}
