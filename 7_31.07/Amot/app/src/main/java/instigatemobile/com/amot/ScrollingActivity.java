@@ -8,8 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
-import static java.lang.Integer.valueOf;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -21,15 +22,13 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Intent intent = getIntent();
-        if (intent != null) {
-            String value = intent.getStringExtra(MainActivity.KEY);
-            int mValue = valueOf(value);
-            user = DataProvider.users.get(mValue);
-            ImageView imageView = findViewById(R.id.scrollingImage);
-            Picasso.get().load(user.getImageURL()).into(imageView);
-            btnClick();
-        }
+        final int mValue = getIntent().getIntExtra(MyAdapter.KEY, -1);
+        ImageView imageView = findViewById(R.id.scrollingImage);
+        TextView textView = findViewById(R.id.scr_user_name);
+        user = DataProvider.users.get(mValue);
+        textView.setText(user.getName());
+        Picasso.get().load(user.getImageURL()).into(imageView);
+        btnClick();
     }
 
     private void btnClick() {

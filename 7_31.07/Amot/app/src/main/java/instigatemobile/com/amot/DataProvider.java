@@ -31,14 +31,11 @@ public class DataProvider {
         users.add(new User("Vahan", "AAAAAAAAAAAAAAA AAAAAAAAAAAAAA AAAAAAAAAAA",
                 "https://cdn.pixabay.com/photo/2017/04/05/11/56/image-in-the-image-2204798_960_720.jpg",
                 "0777777777", "arman@gmail.com"));
-        users.add(new User("Mikayel", "KKKKKKKKK KKKKKKKKKKKKKKKKKkkkkk KKKKKKKKKKKKKKKKKKK",
+        users.add(new User("Mher", "KKKKKKKKK KKKKKKKKKKKKKKKKKkkkkk KKKKKKKKKKKKKKKKKKK",
                 "https://3.bp.blogspot.com/-9Iu3-Xnvtig/Wntv1F6CKII/AAAAAAAAAR0/CvCLy-jFSUIfM9vjj6UdjZigK7LKBnSPgCLcBGAs/s1600/2.jpg",
-                "0777777770", "karen@gmail.com"));
+                "0988888888", "karen@gmail.com"));
         users.add(new User("Anahit", "AAAAANNNNNNAAAAAAAAAA AAAAAnNNNNNNNAAAAAAAAA AAAAAAAAAAA",
                 "https://thumb9.shutterstock.com/display_pic_with_logo/63814/582804565/stock-photo-image-of-young-businesswoman-pulling-a-boulder-with-success-word-while-climbing-on-the-stair-582804565.jpg",
                 "0777777700", "anush@gmail.com"));
-
-
-
     }
 }

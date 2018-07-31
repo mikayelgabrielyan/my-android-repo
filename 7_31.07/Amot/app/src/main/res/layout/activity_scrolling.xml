@@ -25,15 +25,18 @@
 
             <ImageView
                 android:id="@+id/scrollingImage"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <TextView
+                android:id="@+id/scr_user_name"
+                android:textColor="@android:color/white"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:textSize="30sp"
+                android:layout_marginBottom="10dp"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

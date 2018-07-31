@@ -12,12 +12,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> implements Filterable {
@@ -82,7 +79,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             }
         };
     }
-
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView imageView;
