@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -69,8 +71,9 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
     private String downloadUrl;
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
-    private DatabaseReference tasksRef;
+    private DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference();
     private String userId;
+    private AdapterOfTaskList adapter;
     private static int mCount = 1;
 
     public TasksListFragment() {
@@ -85,49 +88,25 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tasks_list, container, false);
+        simpleTaskItem = new SimpleTaskItem();
         findElements(view);
         mAuth = FirebaseAuth.getInstance();
         userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         recyclerView = view.findViewById(R.id.rv_task_list);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
-        recyclerView.setLayoutManager(layoutManager);
-        tasksRef = FirebaseDatabase.getInstance().getReference();
-            showTasks();
-//        tasksRef.child(userId).child("tasks").child("Errord task").removeValue();
-
-        //        mTaskElements.add("title");
-//        mTaskElements.add("description");
-//        mTaskElements.add("image");
-//        mTitleList.add("fdvhjxsrfv");
-//        mTitleList.add("gfrrfghjjjhvffff");
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 1);
-//        recyclerView = view.findViewById(R.id.rv_task_list);
-//        recyclerView.setLayoutManager(gridLayoutManager);
-//        tasksRef = FirebaseDatabase.getInstance().getReference("tasks");
-//        for(int i = 0; i < mTitleList.size(); ++i){
-//            tasksRef.child(mTitleList.get(i)).addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    for(DataSnapshot i: dataSnapshot.getChildren()) {
-//                        SimpleTaskItem item = i.getValue(SimpleTaskItem.class);
-//                        mTaskItemList.add(item);
-//                        AdapterOfTaskList adapter = new AdapterOfTaskList(mTaskItemList, mContext);
-//                        recyclerView.setAdapter(adapter);
-//                    }
-//                    AdapterOfTaskList adapter = new AdapterOfTaskList(mTaskItemList, mContext);
-//                    recyclerView.setAdapter(adapter);
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                }
-//            });
-//        }
+        adapter = new AdapterOfTaskList(mTaskItemList, mContext);
+        showTasks();
         return view;
     }
 
     private void showTasks() {
+        int size = mTaskItemList.size();
+        if(size > 0) {
+            for (int i = size-1; i >= 0; --i){
+                mTaskItemList.remove(i);
+            }
+        }
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
+        recyclerView.setLayoutManager(layoutManager);
         tasksRef.child(userId).child("tasks").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -135,24 +114,8 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
                     SimpleTaskItem newItem = i.getValue(SimpleTaskItem.class);
                     mTaskItemList.add(newItem);
                 }
-                AdapterOfTaskList adapter = new AdapterOfTaskList(mTaskItemList, mContext);
+                adapter.notifyDataSetChanged();
                 recyclerView.setAdapter(adapter);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void showNewTask(String newRef) {
-        tasksRef.child(userId).child("tasks").child(newRef).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                SimpleTaskItem newItem = dataSnapshot.getValue(SimpleTaskItem.class);
-                mTaskItemList.add(newItem);
-                AdapterOfTaskList newAdapter = new AdapterOfTaskList(mTaskItemList, mContext);
-                recyclerView.setAdapter(newAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -224,10 +187,12 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
         } else {
             simpleTaskItem.setmTaskTitle(titleStr);
             simpleTaskItem.setmTaskDescription(descStr);
-            simpleTaskItem.setmTaskImageUrl(downloadUrl);
             Toast.makeText(mContext, "uri: " + downloadUrl, Toast.LENGTH_LONG);
             mTitleList.add(simpleTaskItem.getmTaskTitle());
-            showNewTask(titleStr);
+            simpleTaskItem.setmTaskImageUrl("https://firebasestorage.googleapis.com/v0/b/taskmanager-1o1.appspot.com/o/image1?alt=media&token=322a3750-050b-4c09-9b70-f450b9bbfc87");
+            mTaskItemList.add(simpleTaskItem);
+            tasksRef.child(userId).child("tasks").child(titleStr).setValue(simpleTaskItem);
+            showTasks();
         }
         dialogLinearLayout.setVisibility(View.GONE);
         mAddTaskBtn.setActivated(true);
@@ -272,7 +237,6 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
     }
 
     private void addNewTask(View view) {
-        simpleTaskItem = new SimpleTaskItem();
         dialogLinearLayout.setVisibility(View.VISIBLE);
         mAddTaskBtn.setActivated(false);
         dialogLinearLayout.setActivated(false);
@@ -282,19 +246,22 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+            try {
             final Uri imageUri = data.getData();
-            Random random = new Random();
-            String id = "1image" + String.valueOf(random.nextInt()); // generate random string
+            String id = "1image" + mCount;
             final StorageReference riversRef = mStorageRef.child(id);
+            final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
             mTeskImage.setVisibility(View.VISIBLE);
-            mTeskImage.setImageURI(imageUri);
+            mTeskImage.setImageBitmap(selectedImage);
             riversRef.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Get a URL to the uploaded content
-                            downloadUrl =  taskSnapshot.getStorage().getDownloadUrl().toString();
+                            downloadUrl =  String.valueOf(riversRef.getDownloadUrl());
                             Toast.makeText(mContext, "Posted", Toast.LENGTH_LONG).show();
+                            simpleTaskItem.setmTaskImageUrl(downloadUrl);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -304,6 +271,11 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
                             Toast.makeText(mContext, "Failed", Toast.LENGTH_LONG).show();
                         }
                     });
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+
         } else {
             Toast.makeText(mContext, "You haven't picked Image", Toast.LENGTH_LONG).show();
         }

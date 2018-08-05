@@ -56,14 +56,14 @@ public class AdapterOfTaskList extends RecyclerView.Adapter<AdapterOfTaskList.Ta
         }
         public void bind(int position) {
             SimpleTaskItem simpleTaskItem = mTasksList.get(position);
-            mTaskTitle.setText(TasksListFragment.mTaskItemList.get(position).getmTaskTitle());
-            mTaskDescription.setText(TasksListFragment.mTaskItemList.get(position).getmTaskDescription());
+            mTaskTitle.setText(simpleTaskItem.getmTaskTitle());
+            mTaskDescription.setText(simpleTaskItem.getmTaskDescription());
             Picasso.get().load(simpleTaskItem.getmTaskImageUrl()).into(mTaskImage);
 //            itemView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
-//                    RegistrationFragment registrationFragment = new RegistrationFragment();
-//                    FragmentManager manager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+//                    TaskEditFragment taskEditFragment = new TaskEditFragment();
+//                    FragmentManager manager = getSupportFragmentManager();
 //                    FragmentTransaction transaction = manager.beginTransaction();
 //                    transaction.replace(R.id.m_container, registrationFragment);
 //                    transaction.addToBackStack("SIGNIN_FRAGMENT");
