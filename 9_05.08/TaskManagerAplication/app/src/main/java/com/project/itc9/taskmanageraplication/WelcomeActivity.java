@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+    private final static String FIRST = "Its a first slide";
+    private final static String SECOND = "Its a second slide";
     private List<SimpleSliderItem> previewObjectsList = new LinkedList<>();
 
     @Override
@@ -32,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void setObjectList() {
-        previewObjectsList.add(new SimpleSliderItem(R.drawable.logo_oval,  "FIRST", "HELLO"));
-        previewObjectsList.add(new SimpleSliderItem(R.drawable.logo_oval, "SECOND", "WORLD"));
+        previewObjectsList.add(new SimpleSliderItem(R.drawable.logo_oval,  FIRST, "HELLO"));
+        previewObjectsList.add(new SimpleSliderItem(R.drawable.logo_oval, SECOND, "WORLD"));
     }
 }

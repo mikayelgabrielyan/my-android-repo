@@ -254,6 +254,7 @@ public class TasksListFragment extends Fragment implements View.OnClickListener 
             final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
             mTeskImage.setVisibility(View.VISIBLE);
             mTeskImage.setImageBitmap(selectedImage);
+            riversRef.child(userId).child(list.get(pos).get(title)).removrvalue
             riversRef.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
