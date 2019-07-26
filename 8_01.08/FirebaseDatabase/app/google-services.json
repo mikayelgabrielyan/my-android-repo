@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "105620124",
+    "firebase_url": "https://fir-tests-c60b7.firebaseio.com",
+    "project_id": "fir-tests-c60b7",
+    "storage_bucket": "fir-tests-c60b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105620124:android:54f03db8f3317522",
+        "android_client_info": {
+          "package_name": "com.homework.itc9.firebasedatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105620124-i3h5drs59di21djrsva7crb96uhlj5rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTfLr9Uuim-w6hAo9ly0iiHNY4hAejEaU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

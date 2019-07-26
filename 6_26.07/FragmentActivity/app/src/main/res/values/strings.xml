@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FragmentActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="second_fragment_title">Second Fragment</string>
+    <string name="first_fragment_title">First Fragment</string>
+    <string name="et_placeholder"><i>Input your text</i></string>
+    <string name="btn_text">Copy</string>
+</resources>
