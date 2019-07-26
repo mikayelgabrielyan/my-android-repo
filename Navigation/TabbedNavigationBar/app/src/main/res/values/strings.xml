@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">TabbedNavigationBar</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="first_fragment">FIRST FRAGMENT</string>
-    <string name="second_fragment">SECOND FRAGMENT</string>
-    <string name="threed_fragment">THREED FRAGMENT</string>
-</resources>

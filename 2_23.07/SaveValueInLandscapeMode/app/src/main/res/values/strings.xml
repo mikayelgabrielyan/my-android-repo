@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">SaveValueInLandscapeMode</string>
-    <string name="land_title">Landscape Mode</string>
-    <string name="et_placeholder">Enter your text</string>
-    <string name="min_btn">MINIMIZE</string>
-    <string name="max_btn">MAXIMIZE</string>
-    <string name="norm_title">Normal Mode</string>
-</resources>
