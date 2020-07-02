@@ -33,3 +33,4 @@ jobs:
         cd
         cat .android/avd/Pixel_2_API_29.avd/config.ini
         nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
+ 
