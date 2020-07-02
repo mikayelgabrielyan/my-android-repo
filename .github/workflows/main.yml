@@ -25,7 +25,7 @@ jobs:
       run: |
         filepath=`pwd`
         echo $filepath
-        cd .android/avd/
+        cd .android/
         ls -ls
         cd
         cat .android/avd/Pixel_2_API_29.avd/config.ini
