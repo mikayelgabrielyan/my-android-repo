@@ -3,15 +3,11 @@ name: PipeLine with GitHub Actions
 on: push
 
 jobs:
-  detox_automation:
+  job1:
     runs-on: macOS-latest
     steps:
     - name: Setup Git Environment
       uses: actions/checkout@v2
-    - name: Specify node version
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
     - name: Use specific Java version for sdkmanager to work
       uses: joschi/setup-jdk@v1
       with:
@@ -28,15 +24,75 @@ jobs:
         cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
         cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
         cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
-  new_job:
+  job2:
     runs-on: macOS-latest
     steps:
     - name: Setup Git Environment
       uses: actions/checkout@v2
-    - name: Specify node version
-      uses: actions/setup-node@v1
+    - name: Use specific Java version for sdkmanager to work
+      uses: joschi/setup-jdk@v1
       with:
-        node-version: 12
+        java-version: 'openjdk8'
+        architecture: 'x64'
+    - name: Download Android Emulator Image
+      run: |
+        echo y | sudo $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86" > /dev/null
+        $ANDROID_HOME/tools/bin/avdmanager -s create avd -n Pixel_2_API_29 --device "pixel_xl" -k "system-images;android-29;google_apis;x86" -b "x86" -c 2G -d 7 -f  
+    - name: Start Android Emulator
+      run: |
+        filepath=`pwd`
+        echo $filepath
+        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
+        cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
+        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
+  job3:
+    runs-on: macOS-latest
+    steps:
+    - name: Setup Git Environment
+      uses: actions/checkout@v2
+    - name: Use specific Java version for sdkmanager to work
+      uses: joschi/setup-jdk@v1
+      with:
+        java-version: 'openjdk8'
+        architecture: 'x64'
+    - name: Download Android Emulator Image
+      run: |
+        echo y | sudo $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86" > /dev/null
+        $ANDROID_HOME/tools/bin/avdmanager -s create avd -n Pixel_2_API_29 --device "pixel_xl" -k "system-images;android-29;google_apis;x86" -b "x86" -c 2G -d 7 -f  
+    - name: Start Android Emulator
+      run: |
+        filepath=`pwd`
+        echo $filepath
+        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
+        cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
+        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
+        
+  job4:
+    runs-on: macOS-latest
+    steps:
+    - name: Setup Git Environment
+      uses: actions/checkout@v2
+    - name: Use specific Java version for sdkmanager to work
+      uses: joschi/setup-jdk@v1
+      with:
+        java-version: 'openjdk8'
+        architecture: 'x64'
+    - name: Download Android Emulator Image
+      run: |
+        echo y | sudo $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86" > /dev/null
+        $ANDROID_HOME/tools/bin/avdmanager -s create avd -n Pixel_2_API_29 --device "pixel_xl" -k "system-images;android-29;google_apis;x86" -b "x86" -c 2G -d 7 -f  
+    - name: Start Android Emulator
+      run: |
+        filepath=`pwd`
+        echo $filepath
+        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
+        cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
+        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini 
+  job5:
+    runs-on: macOS-latest
+    steps:
+    - name: Setup Git Environment
+      uses: actions/checkout@v2
     - name: Use specific Java version for sdkmanager to work
       uses: joschi/setup-jdk@v1
       with:
