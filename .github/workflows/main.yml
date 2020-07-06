@@ -3,7 +3,8 @@ name: PipeLine with GitHub Actions
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '42 19 * * *'
+    - cron:  '50 19 * * *'
+  
 
 jobs:
   job1:
@@ -11,6 +12,8 @@ jobs:
     steps:
     - name: Setup Git Environment
       uses: actions/checkout@v2
+      with:
+        ref: master
     - name: Use specific Java version for sdkmanager to work
       uses: joschi/setup-jdk@v1
       with:
