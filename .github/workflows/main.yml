@@ -1,6 +1,9 @@
 name: PipeLine with GitHub Actions
 
-on: push
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '42 19 * * *'
 
 jobs:
   job1:
@@ -13,18 +16,11 @@ jobs:
       with:
         java-version: 'openjdk8'
         architecture: 'x64'
-    - name: For Error
-      run: |
-        ls -la
-        pwd
-        abc echo do
     - name: Download Android Emulator Image
-      if: ${{ failure() }}
       run: |
         echo y | sudo $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86" > /dev/null
         $ANDROID_HOME/tools/bin/avdmanager -s create avd -n Pixel_2_API_29 --device "pixel_xl" -k "system-images;android-29;google_apis;x86" -b "x86" -c 2G -d 7 -f  
     - name: Start Android Emulator
-      if: ${{ cancelled() }}
       run: |
         filepath=`pwd`
         echo $filepath
