@@ -1,9 +1,15 @@
 name: PipeLine with GitHub Actions
 
 on:
+  pull_request:
+    branches:
+    - master
+  push:
+    branches:
+    - example
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '50 7 * * *'
+    - cron:  '10 10 * * *'
   
 
 jobs:
@@ -28,7 +34,16 @@ jobs:
         cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
         cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
         cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
-  
+  job2:
+    runs-on: macOS-latest
+    steps:
+    - name: Setup Git Environment
+      uses: actions/checkout@v2
+    - name: Something
+      run: |
+        filepath=`pwd`
+        echo $filepath
+        ls -la
 
 #  - nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
  
