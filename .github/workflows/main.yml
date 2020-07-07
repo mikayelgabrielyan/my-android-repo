@@ -6,7 +6,7 @@ on:
     - master
   push:
     branches:
-    - example
+    - new_branch_1
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '10 10 * * *'
@@ -35,6 +35,7 @@ jobs:
         cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
         cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
   job2:
+    if: (github.event_name == 'schedule')
     runs-on: macOS-latest
     steps:
     - name: Setup Git Environment
