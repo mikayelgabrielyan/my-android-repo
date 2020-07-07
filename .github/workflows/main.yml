@@ -41,6 +41,7 @@ jobs:
     - name: Setup Git Environment
       uses: actions/checkout@v2
     - name: Something
+      if: ${{ always() }}
       run: |
         filepath=`pwd`
         echo $filepath
