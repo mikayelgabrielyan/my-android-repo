@@ -45,6 +45,4 @@ jobs:
         filepath=`pwd`
         echo $filepath
         ls -la
-
-#  - nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
  
