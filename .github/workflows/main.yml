@@ -41,7 +41,10 @@ jobs:
     - name: Setup Git Environment
       uses: actions/checkout@v2
     - name: Branch Name
-      run: echo ${{ github.ref }}
+      run: |
+        echo ${{ github.ref }}
+        echo ${{ github.head_ref }}
+        echo ${{ github.base_ref }}
     - name: Something
       if: contains(github.ref, 'fit')
       run: |
