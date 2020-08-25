@@ -13,38 +13,39 @@ on:
   
 
 jobs:
-  job1:
-    runs-on: macOS-latest
-    steps:
-    - name: Setup Git Environment
-      uses: actions/checkout@v2
-    - name: Use specific Java version for sdkmanager to work
-      uses: joschi/setup-jdk@v1
-      with:
-        java-version: 'openjdk8'
-        architecture: 'x64'
-    - name: Download Android Emulator Image
-      run: |
-        echo y | sudo $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86" > /dev/null
-        $ANDROID_HOME/tools/bin/avdmanager -s create avd -n Pixel_2_API_29 --device "pixel_xl" -k "system-images;android-29;google_apis;x86" -b "x86" -c 2G -d 7 -f  
-    - name: Start Android Emulator
-      run: |
-        filepath=`pwd`
-        echo $filepath
-        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
-        cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
-        cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
+#   job1:
+#     runs-on: macOS-latest
+#     steps:
+#     - name: Setup Git Environment
+#       uses: actions/checkout@v2
+#     - name: Use specific Java version for sdkmanager to work
+#       uses: joschi/setup-jdk@v1
+#       with:
+#         java-version: 'openjdk8'
+#         architecture: 'x64'
+#     - name: Download Android Emulator Image
+#       run: |
+#         echo y | sudo $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86" > /dev/null
+#         $ANDROID_HOME/tools/bin/avdmanager -s create avd -n Pixel_2_API_29 --device "pixel_xl" -k "system-images;android-29;google_apis;x86" -b "x86" -c 2G -d 7 -f  
+#     - name: Start Android Emulator
+#       run: |
+#         filepath=`pwd`
+#         echo $filepath
+#         cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
+#         cat emu_conf.txt > ~/.android/avd/Pixel_2_API_29.avd/config.ini
+#         cat ~/.android/avd/Pixel_2_API_29.avd/config.ini
   job2:
-    if: (github.event_name == 'schedule')
     runs-on: macOS-latest
     steps:
     - name: Setup Git Environment
       uses: actions/checkout@v2
+    - name: Branch Name
+      run: echo ${{ github.ref }}
     - name: Something
+      if: contains(github.ref, 'fit')
       run: |
         filepath=`pwd`
         echo $filepath
-        ls -la
 
 #  - nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
  
