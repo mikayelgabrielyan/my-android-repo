@@ -37,5 +37,5 @@ sdcard.size=512M
 skin.dynamic=yes
 tag.display=Google APIs
 tag.id=google_apis
-skin.name=Pixel_2_API_29
+skin.name=Pixel_2_API_30
 vm.heapSize=256
