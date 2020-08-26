@@ -56,8 +56,13 @@ jobs:
     - name: Echo JIRA reference
       run: echo "My text is ------    ${{ steps.jira.outputs.first_match }}"
     - name: GitRefCheck
-      if: github.ref == '**/[sS][qQ][eE]**'
+      if: ${{ steps.jira.outputs.first_match }} != ''
       run: ls -la
+    - name: Something
+      if: ${{ steps.jira.outputs.first_match }} == ''
+      run: |
+        filepath=`pwd`
+        echo $filepath
 
 #  - nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
  
