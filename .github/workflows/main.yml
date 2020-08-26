@@ -57,7 +57,7 @@ jobs:
       run: echo "My text is ------    ${{ steps.jira.outputs.first_match }}"
     - name: GitRefCheck
       if: ${{ steps.jira.outputs.first_match }} != ''
-      run: ls -la
+      run: echo ${{ steps.jira.outputs }}"
     - name: Something
       if: ${{ steps.jira.outputs.first_match }} == ''
       run: |
