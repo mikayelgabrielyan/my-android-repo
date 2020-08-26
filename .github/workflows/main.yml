@@ -54,9 +54,9 @@ jobs:
         regex_flags: 'gim'
         search_string: 'https://github.com/. mikayelgabrielyan/my-android-repo/. edit/ sqe_F_1001_neW/github/workflows/main.yml'
     - name: Echo JIRA reference
-      run: echo "My text is------${{ steps.jira.outputs.first_match }}"
+      run: echo ${{ steps.jira.outputs.first_match }}
     - name: GitRefCheck
-      if: ${{ steps.jira.outputs.first_match }} != ''
+      if: ${{ steps.jira.outputs.first_match }}
       run: echo ${{ steps.jira.outputs.first_match }}"
     - name: Something
       if: ${{ steps.jira.outputs.first_match }} == ''
