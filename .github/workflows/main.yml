@@ -46,6 +46,9 @@ jobs:
         echo ${{ github.ref }}
         echo ${{ github.head_ref }}
         echo ${{ github.base_ref }}
+    - name: GitRefCheck
+      if: github.ref == '**/[sS][qQ][eE]**'
+      run: ls -la
     - name: Something
       if: contains(github.ref, '[a-z]')
       run: |
