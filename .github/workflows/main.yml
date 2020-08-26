@@ -58,11 +58,6 @@ jobs:
     - name: GitRefCheck
       if: github.ref == '**/[sS][qQ][eE]**'
       run: ls -la
-    - name: Something
-      if: contains(lower(github.ref), 'fit')
-      run: |
-        filepath=`pwd`
-        echo $filepath
 
 #  - nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
  
