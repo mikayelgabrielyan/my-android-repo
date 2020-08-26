@@ -47,7 +47,7 @@ jobs:
         echo ${{ github.head_ref }}
         echo ${{ github.base_ref }}
     - name: Something
-      if: contains(github.ref, `([fF][iI][tT])\w+`)
+      if: contains(github.ref, ([fF][iI][tT])\w+)
       run: |
         filepath=`pwd`
         echo $filepath
