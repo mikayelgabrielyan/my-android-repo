@@ -56,10 +56,9 @@ jobs:
     - name: Echo JIRA reference
       run: echo ${{ steps.jira.outputs.first_match }}
     - name: GitRefCheck
-      if: ${{ steps.jira.outputs.first_match }}
-      run: echo ${{ steps.jira.outputs.first_match }}"
+      run: echo ${{ steps.jira.outputs.error.message }}
     - name: Something
-      if: ${{ steps.jira.outputs.first_match }} == ''
+      if: ${{ steps.jira.outputs.first_match }}
       run: |
         filepath=`pwd`
         echo $filepath
