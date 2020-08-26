@@ -55,8 +55,6 @@ jobs:
         search_string: 'https://github.com/. mikayelgabrielyan/my-android-repo/. edit/ sqe_F_1001_neW/github/workflows/main.yml'
     - name: Echo JIRA reference
       run: echo ${{ steps.jira.outputs.first_match }}
-    - name: GitRefCheck
-      run: echo ${{ steps.jira.outputs.error.message }}
     - name: Something
       if: ${{ steps.jira.outputs.first_match }}
       run: |
