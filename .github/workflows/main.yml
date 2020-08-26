@@ -8,6 +8,7 @@ on:
     branches:
     - new_branch_1
     - sqe_fit_blabla
+    - sqe_FiT_1001_neW
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '10 10 * * *'
