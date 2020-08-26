@@ -52,7 +52,7 @@ jobs:
       with:
         regex_pattern: 'sqe_[fF][iI][tT]\w+'
         regex_flags: 'gim'
-        search_string: 'https://github.com/. mikayelgabrielyan/my-android-repo/. edit/ sqe_FiT_1001_neW/github/workflows/main.yml'
+        search_string: 'https://github.com/. mikayelgabrielyan/my-android-repo/. edit/ sqe_F_1001_neW/github/workflows/main.yml'
     - name: Echo JIRA reference
       run: echo "My text is ------    ${{ steps.jira.outputs.first_match }}"
     - name: GitRefCheck
