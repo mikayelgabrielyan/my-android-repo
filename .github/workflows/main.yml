@@ -50,7 +50,7 @@ jobs:
       if: github.ref == '**/[sS][qQ][eE]**'
       run: ls -la
     - name: Something
-      if: contains(github.ref, '[a-z]')
+      if: contains(github.ref.lower(), 'fit')
       run: |
         filepath=`pwd`
         echo $filepath
