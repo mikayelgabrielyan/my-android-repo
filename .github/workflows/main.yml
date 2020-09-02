@@ -8,6 +8,7 @@ on:
     branches:
     - new_branch_1
     - sqe_fit_blabla
+    - master 
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '10 10 * * *'
@@ -50,6 +51,13 @@ jobs:
       run: |
         filepath=`pwd`
         echo $filepath
+    - name: Find is PR branch Nutrio
+      id: nutrio
+      uses: AsasInnab/regex-action@v1
+      with:
+        regex_pattern: '([oO][fF][nN])|([nN][uU][tT][rR][iI])'
+        regex_flags: 'gim'
+        search_string: ${{ github.head_ref }}
 
 #  - nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
  
