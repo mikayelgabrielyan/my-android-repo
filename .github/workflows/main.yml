@@ -58,7 +58,7 @@ jobs:
       with:
         regex_pattern: '([oO][fF][nN])|([nN][uU][tT][rR][iI])'
         regex_flags: 'gim'
-        search_string: ${{ github.head_ref }} || ${{ github.ref }}
+        search_string: ${{ github.head_ref }},${{ github.ref }}
 
 #  - nohup $ANDROID_HOME/emulator/emulator -avd Pixel_2_API_29 -no-boot-anim -no-audio -verbose &
  
